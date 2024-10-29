@@ -18,7 +18,7 @@ Remember to download python3 at https://www.python.org/downloads/
  **Clone the Repository**:
    Open your terminal and run:
    ```bash
-   git clone https://github.com/your-username/linux_assistant.git
+   git clone https://github.com/texasmadecode/Linux-Assistant
 
 ## Navigate to the Directory:
 
