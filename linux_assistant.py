@@ -139,20 +139,14 @@ used_commands = {}
 while True:
     answer = input(
         "\nWhat do you want to do today?\n"
-        " a. Make file\n"
-        " b. Add to file\n"
-        " c. List files\n"
-        " d. Delete file\n"
-        " e. View file\n"
-        " f. Search in file\n"
-        " g. Create directory\n"
-        " h. Copy file\n"
-        " i. Move file\n"
-        " j. Rename file\n"
-        " k. Check permissions\n"
-        " l. Open Web\n"
-        " m. Help\n"
-        " n. Exit\n"
+        " a. Make file\n"           " g. Create directory\n"
+        " b. Add to file\n"         " h. Copy file\n"
+        " c. List files\n"          " i. Move file\n"
+        " d. Delete file\n"         " j. Rename file\n"
+        " e. View file\n"           " k. Check permissions\n"
+        " f. Search in file\n"      " l. Open Web\n"
+        " g. Create directory\n"    " m. Help\n"
+                                    " n. Exit\n"
     ).strip().lower()
 
     # Increment command usage for summary
