@@ -2,6 +2,7 @@ import os
 import shutil
 from datetime import datetime
 import webbrowser
+import openai
 
 # Command Explanations for Quick Help
 command_help = {
@@ -126,6 +127,25 @@ def display_commands_summary(used_commands):
         print(f"{command}: used {count} time(s)")
     print("Thanks for using computer_Terminal!")
 
+
+def ask_ai():
+    """Asks OpenAI using user's API key."""
+    if not getattr(openai, "api_key", None):
+        openai.api_key = input("Enter your OpenAI API key: ").strip()
+
+    user_model = input("Please enter the model (case-sensitive, e.g., gpt-4): ").strip()
+    prompt = input("Enter your prompt: ").strip()
+
+    try:
+        response = openai.ChatCompletion.create(
+            model=user_model,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        print("\nAI Response:", response["choices"][0]["message"]["content"])
+    except Exception as e:
+        print("Error:", e)
+
+
 # Main program starts here
 current_time_local = datetime.now()
 print("computer_Terminal")
@@ -139,14 +159,15 @@ used_commands = {}
 while True:
     answer = input(
         "\nWhat do you want to do today?\n"
-        " a. Make file\n"           " g. Create directory\n"
-        " b. Add to file\n"         " h. Copy file\n"
-        " c. List files\n"          " i. Move file\n"
-        " d. Delete file\n"         " j. Rename file\n"
-        " e. View file\n"           " k. Check permissions\n"
-        " f. Search in file\n"      " l. Open Web\n"
-        " g. Create directory\n"    " m. Help\n"
-                                    " n. Exit\n"
+        " a. Make file\n"          " h. Copy file\n"
+        " b. Add to file\n"         " i. Move file\n"
+        " c. List files\n"          " j. Rename file\n"
+        " d. Delete file\n"         " k. Check permissions\n"
+        " e. View file\n"           " l. Open Web\n"
+        " f. Search in file\n"      "p. Ask ai\n"
+        "{place holder}\n"            
+        "g. Create directory\n"    " m. Help\n"
+        "z. Open source code\n"    " n. Exit\n"
     ).strip().lower()
 
     # Increment command usage for summary
@@ -206,6 +227,8 @@ while True:
         display_commands_summary(used_commands)
         print("Exiting the program.")
         break
-
+    
+    elif answer == 'p':
+        ask_ai()
     else:
         print("Invalid option. Please choose a valid option.")
